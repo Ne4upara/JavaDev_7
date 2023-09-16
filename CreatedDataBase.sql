@@ -5,79 +5,79 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 CREATE SCHEMA IF NOT EXISTS `myosbb` DEFAULT CHARACTER SET utf8 ;
 USE `myosbb` ;
 
-CREATE TABLE IF NOT EXISTS `myosbb`.`Будинки` (
+CREATE TABLE IF NOT EXISTS `myosbb`.`Р‘СѓРґРёРЅРєРё` (
   `ID` INT NOT NULL AUTO_INCREMENT,
-  `Адреса` VARCHAR(100) NOT NULL,
+  `РђРґСЂРµСЃР°` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`ID`))
 ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `myosbb`.`Квартири` (
+CREATE TABLE IF NOT EXISTS `myosbb`.`РљРІР°СЂС‚РёСЂРё` (
   `ID` INT NOT NULL AUTO_INCREMENT,
-  `Квартира` INT NOT NULL,
-  `Підїзд` TINYINT(1) NOT NULL,
-  `Поверх` TINYINT(1) NOT NULL,
-  `Площа` FLOAT NOT NULL,
+  `РљРІР°СЂС‚РёСЂР°` INT NOT NULL,
+  `РџС–РґС—Р·Рґ` TINYINT(1) NOT NULL,
+  `РџРѕРІРµСЂС…` TINYINT(1) NOT NULL,
+  `РџР»РѕС‰Р°` FLOAT NOT NULL,
   PRIMARY KEY (`ID`))
 ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `myosbb`.`Будинки_до_Квартир` (
+CREATE TABLE IF NOT EXISTS `myosbb`.`Р‘СѓРґРёРЅРєРё_РґРѕ_РљРІР°СЂС‚РёСЂ` (
   `ID` INT NOT NULL AUTO_INCREMENT,
-  `Будинки_ИД` INT NOT NULL,
-  `Квартири_ИД` INT NOT NULL,
+  `Р‘СѓРґРёРЅРєРё_РР”` INT NOT NULL,
+  `РљРІР°СЂС‚РёСЂРё_РР”` INT NOT NULL,
   PRIMARY KEY (`ID`),
-  INDEX `Будинки_idx` (`Будинки_ИД` ASC) VISIBLE,
-  INDEX `Квартири_idx` (`Квартири_ИД` ASC) VISIBLE,
-  CONSTRAINT `Будинки`
-    FOREIGN KEY (`Будинки_ИД`)
-    REFERENCES `myosbb`.`Будинки` (`ID`)
+  INDEX `Р‘СѓРґРёРЅРєРё_idx` (`Р‘СѓРґРёРЅРєРё_РР”` ASC) VISIBLE,
+  INDEX `РљРІР°СЂС‚РёСЂРё_idx` (`РљРІР°СЂС‚РёСЂРё_РР”` ASC) VISIBLE,
+  CONSTRAINT `Р‘СѓРґРёРЅРєРё`
+    FOREIGN KEY (`Р‘СѓРґРёРЅРєРё_РР”`)
+    REFERENCES `myosbb`.`Р‘СѓРґРёРЅРєРё` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `Квартири`
-    FOREIGN KEY (`Квартири_ИД`)
-    REFERENCES `myosbb`.`Квартири` (`ID`)
+  CONSTRAINT `РљРІР°СЂС‚РёСЂРё`
+    FOREIGN KEY (`РљРІР°СЂС‚РёСЂРё_РР”`)
+    REFERENCES `myosbb`.`РљРІР°СЂС‚РёСЂРё` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `myosbb`.`Учасники_ОСББ` (
+CREATE TABLE IF NOT EXISTS `myosbb`.`РЈС‡Р°СЃРЅРёРєРё_РћРЎР‘Р‘` (
   `ID` INT NOT NULL AUTO_INCREMENT,
-  `ФИО` VARCHAR(100) NOT NULL,
+  `Р¤РРћ` VARCHAR(100) NOT NULL,
   `Email` VARCHAR(45) NOT NULL,
-  `Телефон` VARCHAR(20) NOT NULL,
-  `Дата_Народження` DATE NULL,
+  `РўРµР»РµС„РѕРЅ` VARCHAR(20) NOT NULL,
+  `Р”Р°С‚Р°_РќР°СЂРѕРґР¶РµРЅРЅСЏ` DATE NULL,
   PRIMARY KEY (`ID`),
-  FULLTEXT INDEX `ФИО` (`ФИО`) VISIBLE)
+  FULLTEXT INDEX `Р¤РРћ` (`Р¤РРћ`) VISIBLE)
 ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `myosbb`.`Ролі ОСББ` (
+CREATE TABLE IF NOT EXISTS `myosbb`.`Р РѕР»С– РћРЎР‘Р‘` (
   `ID` INT NOT NULL AUTO_INCREMENT,
-  `Учасник_ID` INT NOT NULL,
-  `Роль` ENUM('Учасник', 'Працівник', 'Член Правління', 'Голова') NOT NULL DEFAULT 'Учасник',
-  INDEX `Учасник ОСББ` (`Учасник ОСББ_ID` ASC) INVISIBLE,
+  `РЈС‡Р°СЃРЅРёРє_ID` INT NOT NULL,
+  `Р РѕР»СЊ` ENUM('РЈС‡Р°СЃРЅРёРє', 'РџСЂР°С†С–РІРЅРёРє', 'Р§Р»РµРЅ РџСЂР°РІР»С–РЅРЅСЏ', 'Р“РѕР»РѕРІР°') NOT NULL DEFAULT 'РЈС‡Р°СЃРЅРёРє',
+  INDEX `РЈС‡Р°СЃРЅРёРє РћРЎР‘Р‘` (`РЈС‡Р°СЃРЅРёРє РћРЎР‘Р‘_ID` ASC) INVISIBLE,
   PRIMARY KEY (`ID`),
-  CONSTRAINT `Люди`
-    FOREIGN KEY (`Учасник ОСББ_ID`)
-    REFERENCES `myosbb`.`Учасники_ОСББ` (`ID`)
+  CONSTRAINT `Р›СЋРґРё`
+    FOREIGN KEY (`РЈС‡Р°СЃРЅРёРє РћРЎР‘Р‘_ID`)
+    REFERENCES `myosbb`.`РЈС‡Р°СЃРЅРёРєРё_РћРЎР‘Р‘` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `myosbb`.`Мешканці` (
+CREATE TABLE IF NOT EXISTS `myosbb`.`РњРµС€РєР°РЅС†С–` (
   `ID` INT NOT NULL AUTO_INCREMENT,
-  `Вїзд_на_ЖК` TINYINT NOT NULL DEFAULT 0,
-  `Квартира_ИД` INT NULL,
-  `Учасник_ИД` INT NULL,
+  `Р’С—Р·Рґ_РЅР°_Р–Рљ` TINYINT NOT NULL DEFAULT 0,
+  `РљРІР°СЂС‚РёСЂР°_РР”` INT NULL,
+  `РЈС‡Р°СЃРЅРёРє_РР”` INT NULL,
   PRIMARY KEY (`ID`),
-  INDEX `fk_kv_idx` (`Квартира_ИД` ASC) VISIBLE,
-  INDEX `fk_ucha_idx` (`Учасник_ИД` ASC) VISIBLE,
+  INDEX `fk_kv_idx` (`РљРІР°СЂС‚РёСЂР°_РР”` ASC) VISIBLE,
+  INDEX `fk_ucha_idx` (`РЈС‡Р°СЃРЅРёРє_РР”` ASC) VISIBLE,
   CONSTRAINT `fk_kv`
-    FOREIGN KEY (`Квартира_ИД`)
-    REFERENCES `myosbb`.`Квартири` (`ID`)
+    FOREIGN KEY (`РљРІР°СЂС‚РёСЂР°_РР”`)
+    REFERENCES `myosbb`.`РљРІР°СЂС‚РёСЂРё` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_ucha`
-    FOREIGN KEY (`Учасник_ИД`)
-    REFERENCES `myosbb`.`Учасники_ОСББ` (`ID`)
+    FOREIGN KEY (`РЈС‡Р°СЃРЅРёРє_РР”`)
+    REFERENCES `myosbb`.`РЈС‡Р°СЃРЅРёРєРё_РћРЎР‘Р‘` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
