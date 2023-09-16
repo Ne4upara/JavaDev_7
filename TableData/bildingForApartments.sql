@@ -1,4 +1,4 @@
-INSERT INTO myosbb.будинки_до_квартир VALUES 
+INSERT INTO myosbb.Р±СѓРґРёРЅРєРё_РґРѕ_РєРІР°СЂС‚РёСЂ VALUES 
 (1, 1, 1),
 (2, 1, 2),
 (3, 1, 3),
