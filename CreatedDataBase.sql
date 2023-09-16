@@ -49,14 +49,14 @@ CREATE TABLE IF NOT EXISTS `myosbb`.`Учасники_ОСББ` (
   FULLTEXT INDEX `ФИО` (`ФИО`) VISIBLE)
 ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `myosbb`.`Ролі ОСББ` (
+CREATE TABLE IF NOT EXISTS `myosbb`.`Ролі` (
   `ID` INT NOT NULL AUTO_INCREMENT,
-  `Учасник_ID` INT NOT NULL,
+  `Учасник_ИД` INT NOT NULL,
   `Роль` ENUM('Учасник', 'Працівник', 'Член Правління', 'Голова') NOT NULL DEFAULT 'Учасник',
-  INDEX `Учасник ОСББ` (`Учасник ОСББ_ID` ASC) INVISIBLE,
+  INDEX `УчасникОСББ` (`УчасникОСББ_ИД` ASC) INVISIBLE,
   PRIMARY KEY (`ID`),
   CONSTRAINT `Люди`
-    FOREIGN KEY (`Учасник ОСББ_ID`)
+    FOREIGN KEY (`УчасникОСББ_ИД`)
     REFERENCES `myosbb`.`Учасники_ОСББ` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -68,14 +68,14 @@ CREATE TABLE IF NOT EXISTS `myosbb`.`Мешканці` (
   `Квартира_ИД` INT NULL,
   `Учасник_ИД` INT NULL,
   PRIMARY KEY (`ID`),
-  INDEX `fk_kv_idx` (`Квартира_ИД` ASC) VISIBLE,
-  INDEX `fk_ucha_idx` (`Учасник_ИД` ASC) VISIBLE,
-  CONSTRAINT `fk_kv`
+  INDEX `fk_apartament_idx` (`Квартира_ИД` ASC) VISIBLE,
+  INDEX `fk_participant_idx` (`Учасник_ИД` ASC) VISIBLE,
+  CONSTRAINT `fk_apartament`
     FOREIGN KEY (`Квартира_ИД`)
     REFERENCES `myosbb`.`Квартири` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_ucha`
+  CONSTRAINT `fk_participant`
     FOREIGN KEY (`Учасник_ИД`)
     REFERENCES `myosbb`.`Учасники_ОСББ` (`ID`)
     ON DELETE NO ACTION
