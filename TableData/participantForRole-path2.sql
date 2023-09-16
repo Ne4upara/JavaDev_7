@@ -1,4 +1,4 @@
-INSERT INTO myosbb.ролі_осбб (УчасникОСББ_ИД) VALUES 
+INSERT INTO myosbb.СЂРѕР»С–_РѕСЃР±Р± (РЈС‡Р°СЃРЅРёРєРћРЎР‘Р‘_РР”) VALUES 
 (2),
 (100),
 (95),
