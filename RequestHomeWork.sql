@@ -1,17 +1,17 @@
-SELECT ФИО, Email, Адреса, Квартира, Площа
-FROM myosbb.учасники_осбб AS OSBB
-JOIN myosbb.мешканці AS P ON OSBB.ID = P.Учасник_ИД
-JOIN myosbb.квартири AS KV ON P.квартира_ИД = KV.ID
-JOIN myosbb.будинки_до_квартир AS BDKV ON KV.ID = BDKV.квартири_ид
-JOIN myosbb.будинки AS bud ON BDKV.будинки_ИД = bud.id
-WHERE NOT P.вїзд_на_жк
+SELECT Р¤РРћ, Email, РђРґСЂРµСЃР°, РљРІР°СЂС‚РёСЂР°, РџР»РѕС‰Р°
+FROM myosbb.СѓС‡Р°СЃРЅРёРєРё_РѕСЃР±Р± AS OSBB
+JOIN myosbb.РјРµС€РєР°РЅС†С– AS P ON OSBB.ID = P.РЈС‡Р°СЃРЅРёРє_РР”
+JOIN myosbb.РєРІР°СЂС‚РёСЂРё AS KV ON P.РєРІР°СЂС‚РёСЂР°_РР” = KV.ID
+JOIN myosbb.Р±СѓРґРёРЅРєРё_РґРѕ_РєРІР°СЂС‚РёСЂ AS BDKV ON KV.ID = BDKV.РєРІР°СЂС‚РёСЂРё_РёРґ
+JOIN myosbb.Р±СѓРґРёРЅРєРё AS bud ON BDKV.Р±СѓРґРёРЅРєРё_РР” = bud.id
+WHERE NOT P.РІС—Р·Рґ_РЅР°_Р¶Рє
 AND OSBB.ID IN (
     SELECT OSBB.ID
-    FROM myosbb.учасники_осбб AS OSBB
-    JOIN myosbb.мешканці AS P ON OSBB.ID = P.Учасник_ИД
-    JOIN myosbb.квартири AS KV ON P.квартира_ИД = KV.ID    
+    FROM myosbb.СѓС‡Р°СЃРЅРёРєРё_РѕСЃР±Р± AS OSBB
+    JOIN myosbb.РјРµС€РєР°РЅС†С– AS P ON OSBB.ID = P.РЈС‡Р°СЃРЅРёРє_РР”
+    JOIN myosbb.РєРІР°СЂС‚РёСЂРё AS KV ON P.РєРІР°СЂС‚РёСЂР°_РР” = KV.ID    
     GROUP BY OSBB.ID
     HAVING COUNT(KV.ID) < 2
 )
-GROUP BY ФИО, Email, Адреса, Квартира, Площа
-ORDER BY ФИО DESC;
+GROUP BY Р¤РРћ, Email, РђРґСЂРµСЃР°, РљРІР°СЂС‚РёСЂР°, РџР»РѕС‰Р°
+ORDER BY Р¤РРћ DESC;
