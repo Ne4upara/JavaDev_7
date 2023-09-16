@@ -1,4 +1,4 @@
-INSERT INTO myosbb.мешканці VALUES 
+INSERT INTO myosbb.РјРµС€РєР°РЅС†С– VALUES 
 (1, 0, 1, 100), 
 (2, 0, 2, 99),
 (3, 1, 3, 98),
