@@ -1,4 +1,4 @@
-INSERT INTO myosbb.квартири VALUES 
+INSERT INTO myosbb.РєРІР°СЂС‚РёСЂРё VALUES 
 (1, 1, 1, 1, '44.0'),
 (2, 2, 1, 1, '48.3'),
 (3, 3, 1, 1, '56.7'),
